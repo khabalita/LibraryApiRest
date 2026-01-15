@@ -1,5 +1,6 @@
 package com.khabalita.springboot.libraryApi.services.Impl;
 
+import com.khabalita.springboot.libraryApi.dto.EditorialDto;
 import com.khabalita.springboot.libraryApi.entities.Editorial;
 import com.khabalita.springboot.libraryApi.mapper.EditorialMapper;
 import com.khabalita.springboot.libraryApi.repository.BaseRepository;
@@ -9,16 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class EditorialServiceImpl extends BaseServiceImpl<Editorial, Long> implements EditorialService {
+public class EditorialServiceImpl
+        extends BaseServiceImpl<Editorial, EditorialDto, Long>
+        implements EditorialService {
 
-    @Autowired
-    private EditorialRepository editorialRepository;
-
-    @Autowired
-    private EditorialMapper editorialMapper;
-
-    public EditorialServiceImpl(BaseRepository<Editorial, Long> baseRepository){
-        super(baseRepository);
+    public EditorialServiceImpl(EditorialRepository editorialRepository,
+                                EditorialMapper editorialMapper){
+        super(editorialRepository, editorialMapper);
     }
 
 

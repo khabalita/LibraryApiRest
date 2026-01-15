@@ -1,60 +1,51 @@
 package com.khabalita.springboot.libraryApi.controller;
 
 import com.khabalita.springboot.libraryApi.entities.Base;
-import com.khabalita.springboot.libraryApi.services.Impl.BaseServiceImpl;
+import com.khabalita.springboot.libraryApi.services.BaseService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-public abstract class BaseControllerImpl <E extends Base, S extends BaseServiceImpl<E, Long>> implements BaseController<E, Long>{
+import java.io.Serializable;
+import java.util.List;
+
+public abstract class BaseControllerImpl <D extends Base, ID extends Serializable, S extends BaseService<D, ID>> implements BaseController<D, ID>{
 
     @Autowired
-    protected S service;
+    protected final S service;
 
-    @GetMapping("")
-    public ResponseEntity<?> getAll(){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(service.findAll());
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, please try again}");
-        }
+    protected BaseControllerImpl(S service){
+        this.service = service;
+    }
+
+    @GetMapping
+    public ResponseEntity<List<D>> getAll() {
+        return ResponseEntity.ok(service.findAll());
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getOne(@PathVariable Long id){
-        try {
-            return ResponseEntity.status(HttpStatus.OK).body(service.findById(id));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error, please try again}");
-        }
-
+    public ResponseEntity<D> getOne(@PathVariable ID id) {
+        return ResponseEntity.ok(service.findById(id));
     }
 
-    @PostMapping("")
-    public ResponseEntity<?> save(@RequestBody E entity){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(service.save(entity));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, please try again}");
-        }
+    @PostMapping
+    public ResponseEntity<D> save(@RequestBody @Valid D dto) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(service.save(dto));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody E entity){
-        try{
-            return ResponseEntity.status(HttpStatus.OK).body(service.update(id, entity));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, please try again}");
-        }
+    public ResponseEntity<D> update(@PathVariable ID id,
+                                    @RequestBody @Valid D dto) {
+        return ResponseEntity.ok(service.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> delete(@PathVariable Long id){
-        try{
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(service.delete(id));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error, please try again}");
-        }
+    public ResponseEntity<Void> delete(@PathVariable ID id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -1,5 +1,6 @@
 package com.khabalita.springboot.libraryApi.services.Impl;
 
+import com.khabalita.springboot.libraryApi.dto.BookDto;
 import com.khabalita.springboot.libraryApi.entities.Book;
 import com.khabalita.springboot.libraryApi.mapper.AuthorMapper;
 import com.khabalita.springboot.libraryApi.mapper.BookMapper;
@@ -11,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BookServiceImpl extends BaseServiceImpl<Book, Long> implements BookService {
+public class BookServiceImpl
+        extends BaseServiceImpl<Book, BookDto, Long>
+        implements BookService {
+
     @Autowired
     private BookRepository bookRepository;
 
@@ -36,8 +40,9 @@ public class BookServiceImpl extends BaseServiceImpl<Book, Long> implements Book
     @Autowired
     private CategoryMapper categoryMapper;
 
-    public BookServiceImpl(BaseRepository<Book, Long> baseRepository){
-        super(baseRepository);
+    public BookServiceImpl(BookRepository bookRepository,
+                           BookMapper bookMapper){
+        super(bookRepository, bookMapper);
     }
 
 }

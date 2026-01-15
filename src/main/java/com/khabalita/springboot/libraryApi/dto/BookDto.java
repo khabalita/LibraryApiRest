@@ -1,13 +1,13 @@
 package com.khabalita.springboot.libraryApi.dto;
 
+import com.khabalita.springboot.libraryApi.entities.Base;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.util.List;
 
 @Data
-public class BookDto {
-    private Long id;
+public class BookDto extends Base {
     @NotBlank
     private String ISBN;
     @NotBlank

@@ -1,14 +1,13 @@
 package com.khabalita.springboot.libraryApi.dto;
 
+import com.khabalita.springboot.libraryApi.entities.Base;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
 import java.time.LocalDate;
 
-    //Agregado un nuevo comentario
 @Data
-public class AuthorDto {
-    private Long id;
+public class AuthorDto extends Base {
     @NotBlank
     private String name;
     @NotBlank
@@ -16,6 +15,5 @@ public class AuthorDto {
     @NotBlank
     private String nationality;
     private LocalDate birthdate;
-    private LocalDate deathdate;
     private String biography;
 }

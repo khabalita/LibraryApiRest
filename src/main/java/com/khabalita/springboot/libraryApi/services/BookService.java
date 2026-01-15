@@ -1,6 +1,6 @@
 package com.khabalita.springboot.libraryApi.services;
 
-import com.khabalita.springboot.libraryApi.entities.Book;
+import com.khabalita.springboot.libraryApi.dto.BookDto;
 
-public interface BookService extends BaseService<Book, Long>{
+public interface BookService extends BaseService<BookDto, Long>{
 }

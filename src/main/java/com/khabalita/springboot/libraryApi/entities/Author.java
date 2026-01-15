@@ -28,9 +28,6 @@ public class Author extends Base{
     @JsonFormat(pattern = "yyyy-MM-dd")
     @Column(name = "Birthdate")
     private LocalDate birthdate;
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    @Column(name = "Deathdate")
-    private LocalDate deathdate;
     @Column(name = "Biography")
     private String biography;
 

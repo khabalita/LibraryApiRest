@@ -1,5 +1,6 @@
 package com.khabalita.springboot.libraryApi.services.Impl;
 
+import com.khabalita.springboot.libraryApi.dto.CategoryDto;
 import com.khabalita.springboot.libraryApi.entities.Category;
 import com.khabalita.springboot.libraryApi.mapper.CategoryMapper;
 import com.khabalita.springboot.libraryApi.repository.BaseRepository;
@@ -9,15 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class CategoryServiceImpl extends BaseServiceImpl<Category, Long> implements CategoryService {
+public class CategoryServiceImpl
+        extends BaseServiceImpl<Category, CategoryDto, Long>
+        implements CategoryService {
 
-    @Autowired
-    private CategoryRepository categoryRepository;
-
-    @Autowired
-    private CategoryMapper categoryMapper;
-
-    public CategoryServiceImpl(BaseRepository<Category, Long> baseRepository){
-        super(baseRepository);
+    public CategoryServiceImpl(CategoryRepository categoryRepository,
+                               CategoryMapper categoryMapper){
+        super(categoryRepository, categoryMapper);
     }
 }
