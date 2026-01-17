@@ -1,5 +1,6 @@
 package com.khabalita.springboot.libraryApi.controller;
 
+import com.khabalita.springboot.libraryApi.dto.BaseDto;
 import com.khabalita.springboot.libraryApi.entities.Base;
 import com.khabalita.springboot.libraryApi.services.BaseService;
 import jakarta.validation.Valid;
@@ -11,7 +12,11 @@ import org.springframework.web.bind.annotation.*;
 import java.io.Serializable;
 import java.util.List;
 
-public abstract class BaseControllerImpl <D extends Base, ID extends Serializable, S extends BaseService<D, ID>> implements BaseController<D, ID>{
+public abstract class BaseControllerImpl <
+        D extends BaseDto,
+        ID extends Serializable,
+        S extends BaseService<D, ID>>
+        implements BaseController<D, ID>{
 
     @Autowired
     protected final S service;
