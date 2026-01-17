@@ -14,9 +14,9 @@ public class BookServiceImpl
 
     private final BookRepository bookRepository;
     private final BookMapper bookMapper;
-    private AuthorRepository authorRepository;
-    private EditorialRepository editorialRepository;
-    private CategoryRepository categoryRepository;
+    private final AuthorRepository authorRepository;
+    private final EditorialRepository editorialRepository;
+    private final CategoryRepository categoryRepository;
 
 
     public BookServiceImpl(BookRepository bookRepository,
