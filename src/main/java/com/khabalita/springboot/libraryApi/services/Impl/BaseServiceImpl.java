@@ -1,5 +1,6 @@
 package com.khabalita.springboot.libraryApi.services.Impl;
 
+import com.khabalita.springboot.libraryApi.dto.BaseDto;
 import com.khabalita.springboot.libraryApi.entities.Base;
 import com.khabalita.springboot.libraryApi.mapper.BaseMapper;
 import com.khabalita.springboot.libraryApi.repository.BaseRepository;
@@ -14,7 +15,7 @@ import java.util.List;
 @Service
 public abstract class BaseServiceImpl<
         E extends Base,
-        D extends Base,
+        D extends BaseDto,
         ID extends Serializable>
         implements BaseService<D, ID> {
 

@@ -1,11 +1,11 @@
 package com.khabalita.springboot.libraryApi.services;
 
-import com.khabalita.springboot.libraryApi.entities.Base;
+import com.khabalita.springboot.libraryApi.dto.BaseDto;
 
 import java.io.Serializable;
 import java.util.List;
 
-public interface BaseService<D extends Base, ID extends Serializable> {
+public interface BaseService<D extends BaseDto, ID extends Serializable> {
     List<D> findAll();
     D findById(ID id);
     D save(D dto);
