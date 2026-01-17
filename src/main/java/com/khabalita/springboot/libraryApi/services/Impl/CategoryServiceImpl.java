@@ -14,8 +14,13 @@ public class CategoryServiceImpl
         extends BaseServiceImpl<Category, CategoryDto, Long>
         implements CategoryService {
 
+    private final CategoryRepository categoryRepository;
+    private final CategoryMapper categoryMapper;
+
     public CategoryServiceImpl(CategoryRepository categoryRepository,
                                CategoryMapper categoryMapper){
         super(categoryRepository, categoryMapper);
+        this.categoryRepository = categoryRepository;
+        this.categoryMapper = categoryMapper;
     }
 }

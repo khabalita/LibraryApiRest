@@ -17,5 +17,5 @@ public class BookDto extends BaseDto {
     private Long edition;
     private AuthorDto authorDto;
     private EditorialDto editorialDto;
-    private List<CategoryDto> categoryDto;
+    private List<CategoryDto> categoryDtoList;
 }

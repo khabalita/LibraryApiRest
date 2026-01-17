@@ -12,8 +12,13 @@ public class AuthorServiceImpl
         extends BaseServiceImpl<Author, AuthorDto, Long>
         implements AuthorService {
 
+    private final AuthorRepository authorRepository;
+    private final AuthorMapper authorMapper;
+
     public AuthorServiceImpl(AuthorRepository authorRepository,
                              AuthorMapper authorMapper){
         super(authorRepository, authorMapper);
+        this.authorRepository = authorRepository;
+        this.authorMapper = authorMapper;
     }
 }

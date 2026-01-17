@@ -16,8 +16,8 @@ public class BookServiceImpl
         extends BaseServiceImpl<Book, BookDto, Long>
         implements BookService {
 
-    @Autowired
-    private BookRepository bookRepository;
+    private final BookRepository bookRepository;
+    private final BookMapper bookMapper;
 
     @Autowired
     private AuthorRepository authorRepository;
@@ -27,9 +27,6 @@ public class BookServiceImpl
 
     @Autowired
     private CategoryRepository categoryRepository;
-
-    @Autowired
-    private BookMapper bookMapper;
 
     @Autowired
     private AuthorMapper authorMapper;
@@ -43,6 +40,8 @@ public class BookServiceImpl
     public BookServiceImpl(BookRepository bookRepository,
                            BookMapper bookMapper){
         super(bookRepository, bookMapper);
+        this.bookRepository = bookRepository;
+        this.bookMapper = bookMapper;
     }
 
 }

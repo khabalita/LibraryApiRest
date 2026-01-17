@@ -14,9 +14,14 @@ public class EditorialServiceImpl
         extends BaseServiceImpl<Editorial, EditorialDto, Long>
         implements EditorialService {
 
+    private final EditorialRepository editorialRepository;
+    private final EditorialMapper editorialMapper;
+
     public EditorialServiceImpl(EditorialRepository editorialRepository,
                                 EditorialMapper editorialMapper){
         super(editorialRepository, editorialMapper);
+        this.editorialRepository = editorialRepository;
+        this.editorialMapper = editorialMapper;
     }
 
 
