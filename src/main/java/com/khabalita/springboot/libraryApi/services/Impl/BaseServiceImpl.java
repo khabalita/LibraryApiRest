@@ -57,7 +57,9 @@ public abstract class BaseServiceImpl<
                 .orElseThrow(()-> new EntityNotFoundException("Not found"));
         E entity = baseMapper.toEntity(dto);
         entity.setId(existing.getId());
-        return baseMapper.toDto(entity);
+
+        E updatedEntity = baseRepository.save(entity);
+        return baseMapper.toDto(updatedEntity);
     }
 
     @Override
