@@ -7,6 +7,8 @@ import com.khabalita.springboot.libraryApi.repository.AuthorRepository;
 import com.khabalita.springboot.libraryApi.services.AuthorService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AuthorServiceImpl
         extends BaseServiceImpl<Author, AuthorDto, Long>
@@ -20,5 +22,10 @@ public class AuthorServiceImpl
         super(authorRepository, authorMapper);
         this.authorRepository = authorRepository;
         this.authorMapper = authorMapper;
+    }
+
+    @Override
+    public List<AuthorDto> findByLastName(String lastName) {
+        return authorMapper.toDtoList(authorRepository.findByLastName(lastName));
     }
 }
