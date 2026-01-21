@@ -39,5 +39,5 @@ public class Book extends Base{
             joinColumns = @JoinColumn(name = "book_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id")
     )
-    private List<Category> category;
+    private List<Category> categories;
 }

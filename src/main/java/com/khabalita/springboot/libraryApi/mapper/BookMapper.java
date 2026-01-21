@@ -12,9 +12,9 @@ import org.mapstruct.Mapping;
 public interface BookMapper extends BaseMapper<Book, BookDto>{
 
     @Override
-    @Mapping(source = "author", target = "authorDto")
-    @Mapping(source = "editorial", target = "editorialDto")
-    @Mapping(source = "category", target = "categoryDtoList")
+    @Mapping(source = "author", target = "author")
+    @Mapping(source = "editorial", target = "editorial")
+    @Mapping(source = "categories", target = "categories")
     BookDto toDto(Book book);
 
     @Override

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-01-17T10:44:18+0100",
+    date = "2026-01-21T15:42:08+0100",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Eclipse Adoptium)"
 )
 @Component
@@ -47,9 +47,9 @@ public class BookMapperImpl implements BookMapper {
 
         BookDto bookDto = new BookDto();
 
-        bookDto.setAuthorDto( authorMapper.toDto( book.getAuthor() ) );
-        bookDto.setEditorialDto( editorialMapper.toDto( book.getEditorial() ) );
-        bookDto.setCategoryDtoList( categoryMapper.toDtoList( book.getCategory() ) );
+        bookDto.setAuthor( authorMapper.toDto( book.getAuthor() ) );
+        bookDto.setEditorial( editorialMapper.toDto( book.getEditorial() ) );
+        bookDto.setCategories( categoryMapper.toDtoList( book.getCategories() ) );
         bookDto.setISBN( book.getISBN() );
         bookDto.setTitle( book.getTitle() );
         bookDto.setSubTitle( book.getSubTitle() );
@@ -66,9 +66,9 @@ public class BookMapperImpl implements BookMapper {
 
         Book.BookBuilder book = Book.builder();
 
-        book.author( authorMapper.toEntity( bookDto.getAuthorDto() ) );
-        book.editorial( editorialMapper.toEntity( bookDto.getEditorialDto() ) );
-        book.category( categoryDtoListToCategoryList( bookDto.getCategoryDtoList() ) );
+        book.author( authorMapper.toEntity( bookDto.getAuthor() ) );
+        book.editorial( editorialMapper.toEntity( bookDto.getEditorial() ) );
+        book.categories( categoryDtoListToCategoryList( bookDto.getCategories() ) );
         book.ISBN( bookDto.getISBN() );
         book.title( bookDto.getTitle() );
         book.subTitle( bookDto.getSubTitle() );

@@ -7,6 +7,8 @@ import com.khabalita.springboot.libraryApi.repository.*;
 import com.khabalita.springboot.libraryApi.services.BookService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookServiceImpl
         extends BaseServiceImpl<Book, BookDto, Long>
@@ -32,4 +34,18 @@ public class BookServiceImpl
         this.editorialRepository = editorialRepository;
     }
 
+    @Override
+    public BookDto findBYISBN(String ISBN) {
+        return bookMapper.toDto(bookRepository.findByISBN(ISBN));
+    }
+
+    @Override
+    public List<BookDto> findBookByAuthorName(String author) {
+        return bookMapper.toDtoList(bookRepository.findByAuthorNameContainingIgnoreCase(author));
+    }
+
+    @Override
+    public List<BookDto> findBookByCategories(String categories) {
+        return bookMapper.toDtoList(bookRepository.findByCategories_NameContainingIgnoreCase(categories));
+    }
 }
