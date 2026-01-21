@@ -15,7 +15,7 @@ public class BookDto extends BaseDto {
     private String subTitle;
     @NotBlank
     private Long edition;
-    private AuthorDto authorDto;
-    private EditorialDto editorialDto;
-    private List<CategoryDto> categoryDtoList;
+    private AuthorDto author;
+    private EditorialDto editorial;
+    private List<CategoryDto> categories;
 }

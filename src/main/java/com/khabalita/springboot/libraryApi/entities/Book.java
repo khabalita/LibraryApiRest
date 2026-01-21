@@ -25,15 +25,15 @@ public class Book extends Base{
     @Column(name = "Edition")
     private Long edition;
 
-    @ManyToOne  //muchos libros tienen un autor
+    @ManyToOne
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToOne  //muchos libros tienen un editorial
+    @ManyToOne
     @JoinColumn(name = "editorial_id")
     private Editorial editorial;
 
-    @ManyToMany   //muchos libros pueden pertenecer a una o mas categorias
+    @ManyToMany
     @JoinTable(
             name = "book_category",
             joinColumns = @JoinColumn(name = "book_id"),
