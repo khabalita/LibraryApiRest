@@ -9,5 +9,6 @@ import java.util.List;
 public interface AuthorRepository extends BaseRepository<Author, Long> {
 
     List<Author> findByLastName(String lastName);
+    List<Author> findByNameContainingIgnoreCase(String name);
 
 }

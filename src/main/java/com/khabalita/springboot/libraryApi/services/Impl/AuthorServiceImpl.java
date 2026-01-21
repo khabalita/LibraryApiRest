@@ -28,4 +28,9 @@ public class AuthorServiceImpl
     public List<AuthorDto> findByLastName(String lastName) {
         return authorMapper.toDtoList(authorRepository.findByLastName(lastName));
     }
+
+    @Override
+    public List<AuthorDto> findByNameContainingIgnoreCase(String name) {
+        return authorMapper.toDtoList(authorRepository.findByNameContainingIgnoreCase(name));
+    }
 }

@@ -25,4 +25,9 @@ public class AuthorController
     public ResponseEntity<List<AuthorDto>> findByLastName(@RequestParam String lastName){
         return ResponseEntity.ok(authorService.findByLastName(lastName));
     }
+
+    @GetMapping("/searchString")
+    public ResponseEntity<List<AuthorDto>> findByNameContainingIgnoreCase(@RequestParam String name){
+        return ResponseEntity.ok(authorService.findByNameContainingIgnoreCase(name));
+    }
 }

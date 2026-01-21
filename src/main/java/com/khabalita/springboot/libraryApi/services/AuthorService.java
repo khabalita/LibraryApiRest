@@ -7,4 +7,5 @@ import java.util.List;
 public interface AuthorService extends BaseService<AuthorDto, Long>{
 
     List<AuthorDto> findByLastName(String lastName);
+    List<AuthorDto> findByNameContainingIgnoreCase(String name);
 }
