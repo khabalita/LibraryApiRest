@@ -25,7 +25,7 @@ public class BookServiceImpl
                            BookMapper bookMapper,
                            AuthorRepository authorRepository,
                            EditorialRepository editorialRepository,
-                           CategoryRepository categoryRepository){
+                           CategoryRepository categoryRepository) {
         super(bookRepository, bookMapper);
         this.bookRepository = bookRepository;
         this.bookMapper = bookMapper;
@@ -48,4 +48,12 @@ public class BookServiceImpl
     public List<BookDto> findBookByCategories(String categories) {
         return bookMapper.toDtoList(bookRepository.findByCategories_NameContainingIgnoreCase(categories));
     }
+
+    @Override
+    public List<BookDto> getAllBooksDeleted() {
+        List<Book> deletedBooks = bookRepository.findAllBooksDeleted();
+        return baseMapper.toDtoList(deletedBooks);
+    }
+
 }
+

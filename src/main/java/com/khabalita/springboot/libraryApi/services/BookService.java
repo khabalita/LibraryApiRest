@@ -9,4 +9,5 @@ public interface BookService extends BaseService<BookDto, Long>{
     BookDto findBYISBN(String ISBN);
     List<BookDto> findBookByAuthorName(String author);
     List<BookDto> findBookByCategories(String categories);
+    List<BookDto> getAllBooksDeleted();
 }
