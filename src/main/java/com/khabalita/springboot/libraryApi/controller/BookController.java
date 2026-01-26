@@ -1,11 +1,10 @@
 package com.khabalita.springboot.libraryApi.controller;
 
 import com.khabalita.springboot.libraryApi.dto.BookDto;
-import com.khabalita.springboot.libraryApi.entities.Book;
-import com.khabalita.springboot.libraryApi.services.AuthorService;
+import com.khabalita.springboot.libraryApi.dto.request.BookRequestDto;
+import com.khabalita.springboot.libraryApi.dto.response.BookResponseDto;
 import com.khabalita.springboot.libraryApi.services.BookService;
-import com.khabalita.springboot.libraryApi.services.Impl.BookServiceImpl;
-import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +20,11 @@ public class BookController
     public BookController(BookService bookService) {
         super(bookService);
         this.bookService = bookService;
+    }
+
+    @PostMapping("/simpleSave")
+    public ResponseEntity<BookResponseDto> create(@RequestBody BookRequestDto request){
+        return ResponseEntity.status(HttpStatus.CREATED).body(bookService.saveSimple(request));
     }
 
     @GetMapping("/searchISBN")

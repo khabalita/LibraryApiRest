@@ -21,7 +21,7 @@ public class Base implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "deleted")
+    @Column(name = "deleted", nullable = false)
     private boolean delete = false;
     @CreatedDate
     @Column(name = "createdAT", updatable = false, nullable = false)

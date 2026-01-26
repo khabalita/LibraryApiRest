@@ -2,8 +2,11 @@ package com.khabalita.springboot.libraryApi.mapper;
 
 import com.khabalita.springboot.libraryApi.dto.BookDto;
 import com.khabalita.springboot.libraryApi.dto.CategoryDto;
+import com.khabalita.springboot.libraryApi.dto.response.BookResponseDto;
+import com.khabalita.springboot.libraryApi.entities.Author;
 import com.khabalita.springboot.libraryApi.entities.Book;
 import com.khabalita.springboot.libraryApi.entities.Category;
+import com.khabalita.springboot.libraryApi.entities.Editorial;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.processing.Generated;
@@ -12,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2026-01-21T15:42:08+0100",
+    date = "2026-01-26T09:25:18+0100",
     comments = "version: 1.5.5.Final, compiler: javac, environment: Java 21.0.2 (Eclipse Adoptium)"
 )
 @Component
@@ -77,6 +80,37 @@ public class BookMapperImpl implements BookMapper {
         return book.build();
     }
 
+    @Override
+    public BookResponseDto toResponseDto(Book book) {
+        if ( book == null ) {
+            return null;
+        }
+
+        BookResponseDto bookResponseDto = new BookResponseDto();
+
+        bookResponseDto.setAuthorName( bookAuthorName( book ) );
+        bookResponseDto.setEditorialName( bookEditorialName( book ) );
+        bookResponseDto.setCategoriesName( categoryListToStringList( book.getCategories() ) );
+        bookResponseDto.setISBN( book.getISBN() );
+        bookResponseDto.setTitle( book.getTitle() );
+
+        return bookResponseDto;
+    }
+
+    @Override
+    public List<BookResponseDto> toListResponseDto(List<Book> books) {
+        if ( books == null ) {
+            return null;
+        }
+
+        List<BookResponseDto> list = new ArrayList<BookResponseDto>( books.size() );
+        for ( Book book : books ) {
+            list.add( toResponseDto( book ) );
+        }
+
+        return list;
+    }
+
     protected List<Category> categoryDtoListToCategoryList(List<CategoryDto> list) {
         if ( list == null ) {
             return null;
@@ -85,6 +119,49 @@ public class BookMapperImpl implements BookMapper {
         List<Category> list1 = new ArrayList<Category>( list.size() );
         for ( CategoryDto categoryDto : list ) {
             list1.add( categoryMapper.toEntity( categoryDto ) );
+        }
+
+        return list1;
+    }
+
+    private String bookAuthorName(Book book) {
+        if ( book == null ) {
+            return null;
+        }
+        Author author = book.getAuthor();
+        if ( author == null ) {
+            return null;
+        }
+        String name = author.getName();
+        if ( name == null ) {
+            return null;
+        }
+        return name;
+    }
+
+    private String bookEditorialName(Book book) {
+        if ( book == null ) {
+            return null;
+        }
+        Editorial editorial = book.getEditorial();
+        if ( editorial == null ) {
+            return null;
+        }
+        String name = editorial.getName();
+        if ( name == null ) {
+            return null;
+        }
+        return name;
+    }
+
+    protected List<String> categoryListToStringList(List<Category> list) {
+        if ( list == null ) {
+            return null;
+        }
+
+        List<String> list1 = new ArrayList<String>( list.size() );
+        for ( Category category : list ) {
+            list1.add( mapCategoryToString( category ) );
         }
 
         return list1;

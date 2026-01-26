@@ -11,5 +11,4 @@ public interface BaseService<D extends BaseDto, ID extends Serializable> {
     D save(D dto);
     D update(ID id, D dto);
     void delete(ID id);
-
 }

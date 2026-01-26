@@ -1,7 +1,6 @@
 package com.khabalita.springboot.libraryApi.controller;
 
 import com.khabalita.springboot.libraryApi.dto.BaseDto;
-import com.khabalita.springboot.libraryApi.entities.Base;
 import com.khabalita.springboot.libraryApi.services.BaseService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
